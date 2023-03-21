@@ -2,34 +2,42 @@
 <html lang="ja">
 
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <link type="text/css" href="./style.css" rel="stylesheet">
-        <title><%=title %></title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <title>ミニメッセージボード</title>
+        <script>
+            function init(){
+                var id = localStorage.getItem('id');
+                if(id == null){
+                    location.href = './login';
+                }
+                document.querySelector('#id').textContent = 'ID:' + id;
+                document.querySelector('#id_input').value = id;
+            }
+        </script>
     </head>
 
-    <body class="container">
+    <body onload="init();">
         <header>
-            <h1><%=title %></h1>
+            <h1>メッセージボード</h1>
         </header>
         <div role="main">
-            <p><%=content %></p>
-            <table class="table">
-                <tr>
-                    <th>伝言です！</th>
-                </tr>
-                <tr>
-                    <td><%= data.msg %></td>
-                </tr>
-            </table>
-            <p>your last messagae:<%= cookie_data %></p>
+            <p>※メッセージは最大10個まで保管されます。</p>
             <form method="post" action="/">
-                <div class="form-group">
-                    <label for="msg">MESSAGE</label>
-                    <input type="text" name="msg" id="msg" class="form-control">
+                <p id="id"></p>
+                <input type="hidden" id="id_input" name="id">
+                <div>
+                    <label for="msg">Message</label>
+                    <input type="text" name="msg" id="msg">
                 </div>
-                <input type="submit" value="送信" class="btn btn-primary">
+                <input type="submit" value="送信">
             </form>
+
+            <table>
+                <% for(var i in data){ %>
+                <%- include('data_item', {val:data[i]}) %>
+                <% } %>
+            </table>
         </div>
     </body>
-
+    
 </html>

@@ -1,10 +1,7 @@
-<table>
-    <tr>
-        <th><%= id %>:<%= key %></th>
-    </tr>
-    <% for(var i in val){ %>
-    <tr>
-        <td><%= val[i] %></td>
-    </tr>
-    <% } %>
-</table>
+<% if(val != ''){ %>
+<% var obj = JSON.parse(val); %>
+<tr>
+    <th><%= obj.id %></th>
+    <td><%= obj.msg %></td>
+</tr>
+<% } %>
