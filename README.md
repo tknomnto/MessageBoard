@@ -4,8 +4,7 @@
 個人学習を目的として開発したメッセージボード
 
 ## 使用言語/技術
-- HTML/CSS
-- Node.js
+- Node.js（ejs)
 - SQLite
 
 ## 機能
